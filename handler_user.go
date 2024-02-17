@@ -33,5 +33,9 @@ func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Reques
 		respondWithError(w, 500, fmt.Sprintf("Error Creating User: %v", err))
 		return
 	}
+	respondWithJson(w, 201, databaseUserToUser(user))
+}
+
+func (apiCfg *apiConfig) handlerGetUserByAPIKey(w http.ResponseWriter, r *http.Request, user database.User) {
 	respondWithJson(w, 200, databaseUserToUser(user))
 }
