@@ -1,0 +1,43 @@
+.
+├── 📄─ handler_readiness.go
+├── 📄─ scraper.go
+├── 📄─ .env
+├── 📄─ sqlc.yaml
+├── 📄─ TideTracker-tree.txt
+├── 📁─ internal
+│   ├── 📁─ database
+│   │   ├── 📄─ db.go
+│   │   ├── 📄─ posts.sql.go
+│   │   ├── 📄─ feed_follows.sql.go
+│   │   ├── 📄─ feeds.sql.go
+│   │   ├── 📄─ users.sql.go
+│   │   └── 📄─ models.go
+│   └── 📁─ auth
+│       └── 📄─ auth.go
+├── 📄─ handler_feed_follows.go
+├── 📄─ go.mod
+├── 📄─ rss.go
+├── 📄─ go.sum
+├── 📄─ .gitignore
+├── 📄─ handler_feed.go
+├── 📁─ sql
+│   ├── 📁─ queries
+│   │   ├── 📄─ posts.sql
+│   │   ├── 📄─ feeds.sql
+│   │   ├── 📄─ feed_follows.sql
+│   │   └── 📄─ users.sql
+│   └── 📁─ schema
+│       ├── 📄─ 001_users.sql
+│       ├── 📄─ 006_posts.sql
+│       ├── 📄─ 004_feed_follows.sql
+│       ├── 📄─ 002_users_apikey.sql
+│       ├── 📄─ 005_feeds_lastfetchedat.sql
+│       └── 📄─ 003_feeds.sql
+├── 📄─ handler_user.go
+├── 📄─ middleware_auth.go
+├── 📄─ json.go
+├── 📄─ handler_err.go
+├── 📄─ README.md
+├── 📄─ models.go
+├── 📄─ TideTracker
+└── 📄─ main.go

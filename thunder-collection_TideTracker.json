@@ -1,0 +1,215 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "TideTracker",
+    "dateExported": "2024-02-17T21:12:53.793Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "1cf0eaa7-339a-4819-9ab1-16944f353c61",
+            "name": "Users",
+            "containerId": "",
+            "created": "2024-02-17T02:12:32.614Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "3297ab5b-2d42-41f6-85ee-5f1766ac8fe5",
+            "name": "Feeds",
+            "containerId": "",
+            "created": "2024-02-17T15:43:21.316Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "80b6512e-7eaf-4d72-8df1-24c27ba3a244",
+            "name": "Feed Follows",
+            "containerId": "",
+            "created": "2024-02-17T17:04:19.573Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "96935aa1-3a6c-4a86-957b-f7c703ec5ea5",
+            "name": "Posts",
+            "containerId": "",
+            "created": "2024-02-17T20:49:16.099Z",
+            "sortNum": 50000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "5ecef2a9-d5f3-48ca-89bf-39a2292546a2",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "",
+            "name": "Healthz",
+            "url": "http://localhost:8080/v1/healthz",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-17T00:27:42.367Z",
+            "modified": "2024-02-17T00:27:42.367Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6938f870-8e6f-4c1f-9401-09867dedf035",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "1cf0eaa7-339a-4819-9ab1-16944f353c61",
+            "name": "Create User",
+            "url": "http://localhost:8080/v1/users",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-17T02:11:48.937Z",
+            "modified": "2024-02-17T15:45:34.836Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Gustavo Villar\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "dc961737-c004-44b7-9bf4-ecd661dd6f44",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "3297ab5b-2d42-41f6-85ee-5f1766ac8fe5",
+            "name": "Create Feed",
+            "url": "http://localhost:8080/v1/feeds",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-17T15:43:28.136Z",
+            "modified": "2024-02-17T18:37:12.687Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey 94bd5bafc02cbc6917e99758207b4bcd059afe9bd5fd92ac525d1c013baa81f2"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"The Waslane Blog\",\n  \"url\": \"https://wagslane.dev/index.xml\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0da90715-27b5-45f4-bff1-91cc191e1770",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "80b6512e-7eaf-4d72-8df1-24c27ba3a244",
+            "name": "Create Feed Follow",
+            "url": "http://localhost:8080/v1/feed_follows",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-17T17:04:23.319Z",
+            "modified": "2024-02-17T18:38:26.251Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey 94bd5bafc02cbc6917e99758207b4bcd059afe9bd5fd92ac525d1c013baa81f2"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"feed_id\": \"4ed37854-8275-4576-97dc-40f64d6de0fa\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "74677f90-425b-4a96-aa14-917596c3203a",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "96935aa1-3a6c-4a86-957b-f7c703ec5ea5",
+            "name": "Get Posts for User",
+            "url": "http://localhost:8080/v1/posts",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-17T20:49:25.574Z",
+            "modified": "2024-02-17T20:54:47.693Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey 94bd5bafc02cbc6917e99758207b4bcd059afe9bd5fd92ac525d1c013baa81f2"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "214cc2f0-7220-4198-bb8b-bca39b0661c2",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "1cf0eaa7-339a-4819-9ab1-16944f353c61",
+            "name": "Get User By ApiKey",
+            "url": "http://localhost:8080/v1/users",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-17T14:56:50.959Z",
+            "modified": "2024-02-17T15:06:07.050Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey 94bd5bafc02cbc6917e99758207b4bcd059afe9bd5fd92ac525d1c013baa81f2"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "cd20775a-03d9-45c2-92bf-86d99c15c58d",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "3297ab5b-2d42-41f6-85ee-5f1766ac8fe5",
+            "name": "Get Feeds",
+            "url": "http://localhost:8080/v1/feeds",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-17T15:58:12.243Z",
+            "modified": "2024-02-17T15:58:25.590Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey 94bd5bafc02cbc6917e99758207b4bcd059afe9bd5fd92ac525d1c013baa81f2",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4e0e9a6d-ad33-4584-a7f5-61a0abfdeaf4",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "80b6512e-7eaf-4d72-8df1-24c27ba3a244",
+            "name": "Get Feed Follows By Authed User",
+            "url": "http://localhost:8080/v1/new_posts",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-17T17:09:59.699Z",
+            "modified": "2024-02-17T20:49:52.463Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey 94bd5bafc02cbc6917e99758207b4bcd059afe9bd5fd92ac525d1c013baa81f2"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ad977f3c-6c30-4a6c-b2b5-c4a864bd6743",
+            "colId": "4b9f529b-20e8-490d-9de7-e35ff5c925a6",
+            "containerId": "80b6512e-7eaf-4d72-8df1-24c27ba3a244",
+            "name": "Delete Feed Follow",
+            "url": "http://localhost:8080/v1/feed_follows/40af752a-b410-4fc9-81a3-009a6d14de96",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-02-17T17:26:36.263Z",
+            "modified": "2024-02-17T18:36:30.250Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "ApiKey 94bd5bafc02cbc6917e99758207b4bcd059afe9bd5fd92ac525d1c013baa81f2"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
