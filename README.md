@@ -111,3 +111,7 @@ Use a tool like `Postman` or `Thunder Client` to make API calls to the applicati
 
 ### Understanding the Vendor Folder
 The vendor folder is part of Go's dependency management system. It is populated when you run go mod vendor and includes the exact versions of external packages your project is using. This folder is crucial for ensuring reproducible builds and dependency availability. It's only necessary to re-run go mod vendor if you've updated your dependencies.
+
+### TODO:
+- Set up the database inside a docker container (maybe share network?)
+- Finish dockerizing
