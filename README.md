@@ -16,8 +16,9 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 - Go (version 1.21 or later)
+- Goose (To run the migrations)
 - PostgreSQL
-- Docker (optional, for running PostgreSQL in a container)
+- Docker (optional, for running the database and/or the app on a container)
 
 ### Setting Up the Project
 
@@ -48,20 +49,9 @@ Run the following command to install the Go dependencies:
 1. **Install PostgreSQL**
 Follow the official documentation to install PostgreSQL on your system.
 
-Alternatively, you can use Docker to run a PostgreSQL container:
+Alternatively, you can use Docker to run a PostgreSQL container as listed on the section below:
 
-```bash
-    docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
-```
-
-1. **Create the Database**
-Connect to your PostgreSQL instance and create a new database:
-
-```bash
-    CREATE DATABASE tidetracker;
-```
-
-3. **Run Migrations**
+2. **Run Migrations**
 Use `goose` for database migrations:
 
 - Install `goose`:
@@ -72,12 +62,18 @@ Use `goose` for database migrations:
 
 - Run migrations:
 ```bash
-    goose -dir sql/migrations postgres <postgres_connection_url> up
+    goose -dir sql/schema postgres <postgres_connection_url> up
 ```
 
 ### Generate Database Code with sqlc (Development Only)
 
 The `sqlc` tool is used to generate Go code from SQL queries and schema definitions. This step is primarily relevant during the development phase, particularly when introducing new SQL queries or modifying existing ones. If you have not made any changes to your SQL queries or schema that would impact the generated code, you do not need to run `sqlc generate` again.
+
+To install `sqlc`:
+
+```bash
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+```
 
 To generate or update the database code after making changes, run:
 
@@ -112,6 +108,100 @@ Use a tool like `Postman` or `Thunder Client` to make API calls to the applicati
 ### Understanding the Vendor Folder
 The vendor folder is part of Go's dependency management system. It is populated when you run go mod vendor and includes the exact versions of external packages your project is using. This folder is crucial for ensuring reproducible builds and dependency availability. It's only necessary to re-run go mod vendor if you've updated your dependencies.
 
-### TODO:
-- Set up the database inside a docker container (maybe share network?)
-- Finish dockerizing
+
+# TideTracker Dockerization Guide
+
+This guide covers the Docker setup for the TideTracker project. It includes instructions for running the application and PostgreSQL database using Docker and Docker Compose.
+
+Before you start using the TideTracker application, it's essential to prepare the database structure by running the migrations explained above.
+
+## Prerequisites
+
+- Docker
+- Docker Compose
+
+## Development Database Setup
+
+To run only the PostgreSQL database for development purposes, you can use a custom `docker-compose-db-only.yml` file.
+
+### Up the Development Database
+
+1. Ensure you have `docker-compose-db-only.yml` with the following content:
+
+    ```yaml
+    version: '3.8'
+
+    services:
+      db:
+        image: postgres
+        environment:
+          POSTGRES_DB: tidetracker
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - "5432:5432"
+        volumes:
+          - postgres_data_dev:/var/lib/postgresql/data
+
+    volumes:
+      postgres_data_dev:
+    ```
+
+2. Run the following command in the terminal:
+
+    ```bash
+    docker-compose -f docker-compose-db-only.yml up -d
+    ```
+
+This command starts a PostgreSQL container with the development configuration.
+
+## Running the Application and Database Together
+
+To run both the application and the database in containers, use Docker Compose with the main `docker-compose.yml` file.
+
+### Up Both Services
+
+1. Ensure your `docker-compose.yml` is configured correctly for both the `app` and `db` services.
+
+2. Start the services by running:
+
+    ```bash
+    docker-compose up -d --build
+    ```
+
+This command builds and starts both the application and the database containers based on the configurations provided in `docker-compose.yml`.
+
+## Dockerizing Only the Application
+
+If you need to Dockerize only the application (e.g., for deployment or testing in isolation), follow these steps:
+
+### Build the Application Image
+
+1. Build the Docker image for the application:
+
+    ```bash
+    docker build . -t tidetracker:latest
+    ```
+
+This command builds a Docker image from the `Dockerfile` in the current directory and tags it as `tidetracker:latest`.
+
+### Run the Application Container
+
+2. Run the application container:
+
+    ```bash
+    docker run -p 8080:8080 tidetracker
+    ```
+
+This command runs the `tidetracker` Docker image as a container and maps port 8080 from the container to port 8080 on the host machine, allowing you to access the application at `http://localhost:8080`.
+
+## Notes
+
+- Make sure to adjust environment variables and ports as needed for your specific development or production environments.
+- Regularly backup your database data, especially when running in production environments.
+- Always test your Docker configurations in a development environment before deploying to production.
+- When pushing to DockerHub (or other similar service) remember to set the correct tags so that you can have both a numbered version and the latest version actually up to date
+```bash
+docker build -t username/imagename:0.0.0 -t username/imagename:latest .
+docker push username/imagename --all-tags
+```
