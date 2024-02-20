@@ -205,3 +205,6 @@ This command runs the `tidetracker` Docker image as a container and maps port 80
 docker build -t username/imagename:0.0.0 -t username/imagename:latest .
 docker push username/imagename --all-tags
 ```
+
+## Contributing
+With the guideline above, feel free to contribute to the project.
